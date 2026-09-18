@@ -1,41 +1,24 @@
-name: SQL Autograding
+name: PDI Global Superstore Autograding
 
 on:
   push:
-  pull_request:
+    paths:
+      - "Global_Superstore_Transformation.ktr"
+      - "output.csv"
+      - "pdi_result.png"
+      - "tests/**"
+      - ".github/workflows/pdi-autograding.yml"
 
 jobs:
   grade:
     runs-on: ubuntu-latest
 
-    services:
-      mysql:
-        image: mysql:8.0
-        env:
-          MYSQL_ROOT_PASSWORD: root
-        ports:
-          - 3306:3306
-        options: >-
-          --health-cmd="mysqladmin ping -proot"
-          --health-interval=10s
-          --health-timeout=5s
-          --health-retries=10
-
     steps:
-      - name: Checkout Repository
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Wait for MySQL
-        run: |
-          until mysql -h127.0.0.1 -uroot -proot -e "SELECT 1";
-          do
-            sleep 2
-          done
+      - name: Give execute permission
+        run: chmod +x tests/test.sh
 
-      - name: Run Student SQL
-        run: |
-          mysql -h127.0.0.1 -uroot -proot < starter.sql
-
-      - name: Run Tests
-        run: |
-          mysql -h127.0.0.1 -uroot -proot < tests/test.sql
+      - name: Run autograder
+        run: ./tests/test.sh
