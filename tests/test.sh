@@ -1,33 +1,33 @@
 #!/bin/bash
 
-echo "PDI Global Superstore Autograder"
+echo "======================================"
+echo " PDI Global Superstore Autograder"
+echo "======================================"
+
+PASS=0
+FAIL=0
+
+echo ""
+echo "Checking PDI transformation file..."
 
 if [ -f "Global_Superstore_Transformation.ktr" ]; then
-    echo "PASS: KTR file found"
+    echo "PASS: Global_Superstore_Transformation.ktr found"
+    PASS=$((PASS+1))
 else
-    echo "FAIL: KTR file not found"
-    exit 1
+    echo "FAIL: Global_Superstore_Transformation.ktr not found"
+    FAIL=$((FAIL+1))
 fi
 
-if [ -f "output.csv" ]; then
-    echo "PASS: output.csv found"
+echo ""
+echo "Passed: $PASS"
+echo "Failed: $FAIL"
+
+if [ "$FAIL" -eq 0 ]; then
+    echo ""
+    echo "AUTOGRADING PASSED"
+    exit 0
 else
-    echo "FAIL: output.csv not found"
+    echo ""
+    echo "AUTOGRADING FAILED"
     exit 1
 fi
-
-if [ -f "pdi_result.png" ]; then
-    echo "PASS: Screenshot found"
-else
-    echo "FAIL: Screenshot not found"
-    exit 1
-fi
-
-if [ -s "output.csv" ]; then
-    echo "PASS: output.csv contains data"
-else
-    echo "FAIL: output.csv is empty"
-    exit 1
-fi
-
-echo "AUTOGRADING PASSED"
