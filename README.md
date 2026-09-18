@@ -1,38 +1,26 @@
-# Assignment_1
-Create a database
-# SQL Assignment – Create CollegeDB
+# PDI Global Superstore Assignment
 
-## Objective
+Create a Pentaho Data Integration (PDI) transformation using the Global Superstore dataset.
 
-Write SQL statements to:
+## Required Submission Files
 
-1. Create a database named **CollegeDB**
-2. Select the database
-3. Create a table named **Department**
+Submit:
 
-## Table Structure
+1. `Global_Superstore_Transformation.ktr`
+2. `output.csv`
+3. `pdi_result.png`
 
-| Column | Data Type | Constraint |
-|---------|-----------|------------|
-| DepartmentID | INT(5) | Primary Key |
-| DepartmentName | VARCHAR(20) | |
-| HOD | VARCHAR(20) | |
+## Task
 
-## Instructions
+Read the Global Superstore data using PDI and write the data into a target database table.
 
-- Complete only `starter.sql`.
-- Do not modify file names.
-- Commit and push your solution to GitHub.
-- GitHub Actions will automatically evaluate your submission.
+The transformation should follow:
 
-## Expected Output
-
-A database named **CollegeDB** containing a **Department** table with:
-
-- DepartmentID
-- DepartmentName
-- HOD
+Source Data → Input Step → Table Output → Target Database
 
 ## Submission
 
-Push your completed SQL file to GitHub before the deadline.
+Place the files in the root of your repository.
+
+Do not manually create the output data.
+The `output.csv` must contain the data generated from your PDI transformation.
